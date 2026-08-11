@@ -111,7 +111,7 @@ export class PozhEmbedController {
     return {
       экран: screen,
       название: РАЗРЕШЁННЫЕ[screen],
-      адрес: `${служба}/встроенный/${screen}.html?пропуск=${encodeURIComponent(пропуск)}`,
+      адрес: `${служба}/встроенный/${screen}.html?pass=${encodeURIComponent(пропуск)}`,
       годен_секунд: СРОК_ГОДНОСТИ_СЕК,
     };
   }
