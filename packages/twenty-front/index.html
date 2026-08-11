@@ -12,19 +12,25 @@
     <link rel="apple-touch-icon" href="/images/icons/ios/192.png" />
     <link rel="manifest" href="/manifest.json" />
 
+    <!-- пожсервис: политика содержимого — запрет обращений наружу из браузера.
+         Серверная половина закрыта запретом в коде (src/pozh-netguard.ts), но
+         браузер ходит по сети сам: чужой шрифт, картинка или счётчик на странице
+         тем запретом не ловятся, а чужой сервер видит, кто и когда открыл
+         систему. Здесь всё сведено к своему адресу.
+         'unsafe-inline' и 'unsafe-eval' для скриптов оставлены: без них не
+         работает сборщик страниц в режиме разработки. На боевом сервере их надо
+         убрать — записано в docs/architecture/OUTBOUND_AUDIT.md. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; connect-src 'self' ws: wss:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="A modern open-source CRM" />
-    <meta
-      property="og:image"
-      content="https://raw.githubusercontent.com/twentyhq/twenty/main/docs/static/img/social-card.png"
-    />
+    <!-- пожсервис: картинка для соцсетей убрана — тянулась с чужого сервера,
+         а в закрытом контуре она бесполезна -->
     <meta property="og:description" content="A modern open-source CRM" />
     <meta property="og:title" content="Twenty" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:image"
-      content="https://raw.githubusercontent.com/twentyhq/twenty/main/docs/static/img/social-card.png"
-    />
 
     <meta name="twitter:description" content="A modern open-source CRM" />
     <meta name="twitter:title" content="Twenty" />
