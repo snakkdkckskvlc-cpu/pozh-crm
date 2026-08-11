@@ -23,6 +23,8 @@ import { MetadataGraphQLApiModule } from 'src/engine/api/graphql/metadata-graphq
 import { McpMethodGuardMiddleware } from 'src/engine/api/mcp/middlewares/mcp-method-guard.middleware';
 import { McpModule } from 'src/engine/api/mcp/mcp.module';
 import { RestApiModule } from 'src/engine/api/rest/rest-api.module';
+// пожсервис: выдача пропуска в службу документов
+import { PozhModule } from 'src/pozh/pozh.module';
 import { WorkspaceAuthContextMiddleware } from 'src/engine/core-modules/auth/middlewares/workspace-auth-context.middleware';
 import { MetricsModule } from 'src/engine/core-modules/metrics/metrics.module';
 import { DataloaderModule } from 'src/engine/dataloaders/dataloader.module';
@@ -54,6 +56,7 @@ const MIGRATED_REST_METHODS = [
 
 @Module({
   imports: [
+    PozhModule, // пожсервис
     SentryModule.forRoot(),
     GraphQLModule.forRootAsync<YogaDriverConfig>({
       driver: YogaDriver,

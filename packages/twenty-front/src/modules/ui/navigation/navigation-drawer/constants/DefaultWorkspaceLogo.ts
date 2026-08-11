@@ -1,2 +1,6 @@
+// пожсервис: логотип по умолчанию грузился с чужого сервера (twentyhq.github.io)
+// на КАЖДОЙ странице, включая страницу входа — до всякого входа в систему.
+// Владельцу того сервера был виден адрес конторы и время работы. Настройки
+// для этого в Twenty нет вовсе, поэтому правка кода. Взят свой файл из public.
 export const DEFAULT_WORKSPACE_LOGO =
-  'https://twentyhq.github.io/placeholder-images/workspaces/twenty-logo.png';
+  '/images/icons/android/192.png';
