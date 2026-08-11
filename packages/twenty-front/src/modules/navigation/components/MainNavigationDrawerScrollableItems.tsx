@@ -1,4 +1,6 @@
 import { NavigationDrawerOpenedSection } from '@/navigation-menu-item/display/sections/components/NavigationDrawerOpenedSection';
+// пожсервис: раздел с экранами службы документов
+import { PozhNavigationSection } from '@/navigation/components/PozhNavigationSection';
 import { NavigationDrawerWorkspaceSectionSkeletonLoader } from '@/object-metadata/components/NavigationDrawerWorkspaceSectionSkeletonLoader';
 
 import { styled } from '@linaria/react';
@@ -32,6 +34,7 @@ export const MainNavigationDrawerScrollableItems = () => {
   return (
     <StyledScrollableItemsContainer>
       <NavigationDrawerOpenedSection />
+      <PozhNavigationSection />
       <Suspense fallback={<NavigationDrawerWorkspaceSectionSkeletonLoader />}>
         <FavoritesSectionDispatcher />
         <WorkspaceSectionDispatcher />

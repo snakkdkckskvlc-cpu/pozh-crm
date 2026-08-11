@@ -111,6 +111,9 @@ const StandalonePageLayoutPage = lazy(() =>
   })),
 );
 
+// пожсервис: экраны службы документов
+import { PozhScreenPage } from '~/pages/pozh/PozhScreenPage';
+
 const AiChatPage = lazy(() =>
   import('~/pages/ai-chat/AiChatPage').then((module) => ({
     default: module.AiChatPage,
@@ -191,6 +194,15 @@ const createWorkspaceAppRouter = (
                     isFunctionSettingsEnabled={isFunctionSettingsEnabled}
                     isAdminPageEnabled={isAdminPageEnabled}
                   />
+                }
+              />
+              {/* пожсервис: рамка для экранов службы документов */}
+              <Route
+                path={AppPath.PozhScreen}
+                element={
+                  <LazyRoute>
+                    <PozhScreenPage />
+                  </LazyRoute>
                 }
               />
               <Route
