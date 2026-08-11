@@ -1,0 +1,4 @@
+twenty/
+node_modules/
+.env
+*.log
