@@ -1,0 +1,61 @@
+/* Фирменные цвета ООО «ПожСервис» поверх темы Twenty.
+ *
+ * ПОЧЕМУ ЭТО ОДИН ФАЙЛ СТИЛЕЙ, А НЕ ПРАВКА ИСХОДНИКОВ.
+ * Twenty 0.2.1 читает цвета из переменных CSS во время работы: значения лежат
+ * в theme-constants/theme-light.css, компоненты берут их через var(--t-…), а
+ * ThemeProvider считывает их с готовой страницы и раздаёт остальным. Значит
+ * достаточно переопределить значения — и покраснеет всё сразу, включая места,
+ * где цвет подставляется из кода.
+ *
+ * Первая попытка была хуже: правка палитры в исходниках плюс пересборка пакета.
+ * Это правка ядра, она теряется при каждом обновлении Twenty и требует сборки.
+ * Файл стилей не требует ни того, ни другого.
+ *
+ * ПРО !important. Тема Twenty подключается скриптом ПОЗЖЕ этого файла, и при
+ * равной силе правил побеждает объявленная последней. Пометка здесь уместна:
+ * мы намеренно перекрываем чужую тему целиком, а не чиним частный случай.
+ * Замерено: без неё переменные оставались синими — проверено в браузере.
+ *
+ * Значения сняты из работающего приложения ПожСервиса, а не подобраны на глаз:
+ * их уже видели тридцать сотрудников. Разбор — docs/product/BRANDING.md.
+ */
+
+:root,
+[data-theme="light"] {
+  /* Основной цвет. Twenty зовёт его «blue» — имя разбросано по сотням мест,
+     поэтому меняем значение, а не имя. */
+  --t-color-blue: #e31e24 !important;
+  --t-color-blue1: #fef6f6 !important;
+  --t-color-blue2: #fdecec !important;
+  --t-color-blue3: #fbd7d8 !important;
+  --t-color-blue4: #f8bcbe !important;
+  --t-color-blue5: #f49a9d !important;
+  --t-color-blue6: #ef7276 !important;
+  --t-color-blue7: #ea4a4f !important;
+  --t-color-blue8: #e63035 !important;
+  --t-color-blue9: #e31e24 !important;
+  --t-color-blue10: #d21a20 !important;
+  --t-color-blue11: #c1161b !important;
+  --t-color-blue12: #8e1013 !important;
+
+  /* Акцент: подсветка выбранной строки, рамка активного поля, кнопка. */
+  --t-accent-primary: #f49a9d !important;
+  --t-accent-secondary: #f49a9d !important;
+  --t-accent-tertiary: #fbd7d8 !important;
+  --t-accent-quaternary: #fdecec !important;
+  --t-accent-accent3570: #e63035 !important;
+  --t-accent-accent4060: #e63035 !important;
+  --t-accent-accent1: #fef6f6 !important;
+  --t-accent-accent2: #fdecec !important;
+  --t-accent-accent3: #fbd7d8 !important;
+  --t-accent-accent4: #f8bcbe !important;
+  --t-accent-accent5: #f49a9d !important;
+  --t-accent-accent6: #ef7276 !important;
+  --t-accent-accent7: #ea4a4f !important;
+  --t-accent-accent8: #e63035 !important;
+  --t-accent-accent9: #e31e24 !important;
+  --t-accent-accent10: #d21a20 !important;
+  --t-accent-accent11: #c1161b !important;
+  --t-accent-accent12: #8e1013 !important;
+}
+
