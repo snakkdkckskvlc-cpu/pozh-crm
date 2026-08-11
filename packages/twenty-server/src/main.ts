@@ -1,3 +1,10 @@
+// Запрет выхода в интернет — ПЕРВОЙ строкой, до всех остальных загрузок.
+// Библиотека, успевшая взять ссылку на исходную сетевую функцию раньше,
+// обошла бы подмену. Разбор: src/pozh-netguard.ts
+import { установитьЗапретСети } from 'src/pozh-netguard';
+
+установитьЗапретСети();
+
 import { NestFactory } from '@nestjs/core';
 import { type NestExpressApplication } from '@nestjs/platform-express';
 
