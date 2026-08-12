@@ -28,6 +28,7 @@ import { точка } from 'src/pozh/manifest/objects/tochka';
 import { водитель } from 'src/pozh/manifest/objects/voditel';
 import { ПРИЛОЖЕНИЕ, РОЛЬ_ПО_УМОЛЧАНИЮ } from 'src/pozh/manifest/pozh-ids';
 import { пунктыМеню } from 'src/pozh/manifest/pozh-menyu';
+import { роли } from 'src/pozh/manifest/pozh-roli';
 import { указателиИсточника } from 'src/pozh/manifest/pozh-ukazateli';
 
 const объекты = [
@@ -57,13 +58,7 @@ export const манифестПожСервиса: Manifest = {
     packageJsonChecksum: null,
     yarnLockChecksum: null,
   },
-  roles: [
-    {
-      universalIdentifier: РОЛЬ_ПО_УМОЛЧАНИЮ,
-      label: 'Сотрудник ПожСервиса',
-      description: 'Доступ к учёту. Права по объектам настраиваются отдельно.',
-    },
-  ],
+  roles: роли,
   permissionFlags: [],
   skills: [],
   agents: [],
