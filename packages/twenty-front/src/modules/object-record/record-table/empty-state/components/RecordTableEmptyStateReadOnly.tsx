@@ -9,7 +9,10 @@ export const RecordTableEmptyStateReadOnly = () => {
 
   const objectLabelSingular = useObjectLabel(objectMetadataItem);
 
-  const buttonTitle = `Add a ${objectLabelSingular}`;
+  // Пометка перевода стояла в соседнем экране пустого списка, а здесь её
+  // забыли — и надпись оставалась английской при полностью русском словаре.
+  // Строка `Add a {objectLabelSingular}` в словаре есть и переведена.
+  const buttonTitle = t`Add a ${objectLabelSingular}`;
 
   return (
     <RecordTableEmptyStateDisplay
