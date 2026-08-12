@@ -29,7 +29,10 @@ import { водитель } from 'src/pozh/manifest/objects/voditel';
 import { ПРИЛОЖЕНИЕ, РОЛЬ_ПО_УМОЛЧАНИЮ } from 'src/pozh/manifest/pozh-ids';
 import { пунктыМеню } from 'src/pozh/manifest/pozh-menyu';
 import { роли } from 'src/pozh/manifest/pozh-roli';
-import { указателиИсточника } from 'src/pozh/manifest/pozh-ukazateli';
+import {
+  указателиИсточника,
+  указательНомераЛиста,
+} from 'src/pozh/manifest/pozh-ukazateli';
 
 const объекты = [
   контрагент,
@@ -80,5 +83,5 @@ export const манифестПожСервиса: Manifest = {
   // Составной признак уникальности — единственный способ сделать связь
   // «один-к-одному»: он же держит персональные данные водителя привязанными
   // ровно к одному водителю.
-  indexes: [...указателиДанныхВодителя, ...указателиИсточника],
+  indexes: [...указателиДанныхВодителя, ...указателиИсточника, указательНомераЛиста],
 };

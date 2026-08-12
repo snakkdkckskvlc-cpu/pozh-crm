@@ -19,7 +19,7 @@ import { type ObjectManifest } from 'twenty-shared/application';
 import { RelationOnDeleteAction } from 'twenty-shared/types';
 
 import { ОБЪЕКТЫ } from 'src/pozh/manifest/pozh-ids';
-import { опознаватель, связь, текст, число } from 'src/pozh/manifest/pozh-pole';
+import { источник, опознаватель, связь, текст, число } from 'src/pozh/manifest/pozh-pole';
 
 const О = ОБЪЕКТЫ.прицепВЛисте;
 
@@ -81,6 +81,11 @@ export const прицепВЛисте: ObjectManifest = {
       подпись: 'Порядковый номер',
       пояснение: 'Каким по счёту прицеп записан в бланке.',
     }),
+    // Пара «откуда приехала запись» — без неё повторная перевозка заводит
+    // строки листа заново, и в бланке оказывается по два одинаковых прицепа.
+    // Эта таблица переезжает из старой базы, поэтому пара нужна так же, как
+    // всем остальным.
+    ...источник(О),
   ],
 };
 

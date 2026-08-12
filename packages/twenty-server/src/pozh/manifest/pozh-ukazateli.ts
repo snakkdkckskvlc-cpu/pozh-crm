@@ -29,11 +29,7 @@ import { опознаватель } from 'src/pozh/manifest/pozh-pole';
 // записи «Документы водителя №904» подряд после трёх запусков. Это хуже, чем
 // задвоенный контрагент: удостоверений у водителя ровно одно, и какое из трёх
 // настоящее, по записи не понять.
-const БЕЗ_ПЕРЕНОСА = new Set<string>([
-  ОБЪЕКТЫ.прицепВЛисте,
-  ОБЪЕКТЫ.счётчикНомеров,
-  ОБЪЕКТЫ.правилоСрока,
-]);
+const БЕЗ_ПЕРЕНОСА = new Set<string>([ОБЪЕКТЫ.счётчикНомеров, ОБЪЕКТЫ.правилоСрока]);
 
 const указательИсточника = (объект: string): IndexManifest => ({
   universalIdentifier: getIndexUniversalIdentifier({
@@ -56,3 +52,35 @@ const указательИсточника = (объект: string): IndexManife
 export const указателиИсточника: IndexManifest[] = Object.values(ОБЪЕКТЫ)
   .filter((объект) => !БЕЗ_ПЕРЕНОСА.has(объект))
   .map(указательИсточника);
+
+/**
+ * Номер путевого листа уникален НЕ САМ ПО СЕБЕ, а вместе с серией и
+ * организацией.
+ *
+ * Сначала он был уникален на всю базу — и это ошибка, которая вылезла бы через
+ * месяц работы. Организации у нас две, «ПожСервис» и «ПожМастер», каждая
+ * выписывает листы своей нумерацией. Как только номера совпадут, лист второй
+ * организации просто не запишется, а перевозка объявит это словами «лежит в
+ * корзине», и искать причину человек будет не там.
+ *
+ * У черновика номер пуст, и такие листы друг другу не мешают: база считает
+ * пустые значения разными. Это ровно то поведение, которое нужно — черновиков
+ * может быть сколько угодно.
+ */
+export const указательНомераЛиста: IndexManifest = {
+  universalIdentifier: getIndexUniversalIdentifier({
+    applicationUniversalIdentifier: ПРИЛОЖЕНИЕ,
+    objectUniversalIdentifier: ОБЪЕКТЫ.путевойЛист,
+    name: 'waybillNumberUnique',
+  }),
+  objectUniversalIdentifier: ОБЪЕКТЫ.путевойЛист,
+  isUnique: true,
+  fields: ['organization', 'series', 'number'].map((поле) => ({
+    universalIdentifier: getIndexUniversalIdentifier({
+      applicationUniversalIdentifier: ПРИЛОЖЕНИЕ,
+      objectUniversalIdentifier: ОБЪЕКТЫ.путевойЛист,
+      name: `waybillNumberUnique:${поле}`,
+    }),
+    fieldUniversalIdentifier: опознаватель(ОБЪЕКТЫ.путевойЛист, поле),
+  })),
+};
