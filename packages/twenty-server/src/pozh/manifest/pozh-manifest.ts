@@ -22,7 +22,9 @@ import { прицепВЛисте } from 'src/pozh/manifest/objects/pricep-v-lis
 import { путевойЛист } from 'src/pozh/manifest/objects/putevoj-list';
 import { рейс } from 'src/pozh/manifest/objects/rejs';
 import { счётчикНомеров } from 'src/pozh/manifest/objects/schetchik-nomerov';
+import { пунктСписка } from 'src/pozh/manifest/objects/punkt-spiska-del';
 import { связиМеждуГруппами } from 'src/pozh/manifest/objects/svyazi-mezhdu-gruppami';
+import { связиСЗадачей } from 'src/pozh/manifest/objects/svyaz-s-zadachej';
 import { половиныДляЧужихОбъектов } from 'src/pozh/manifest/objects/svyazi-transporta';
 import { точка } from 'src/pozh/manifest/objects/tochka';
 import { водитель } from 'src/pozh/manifest/objects/voditel';
@@ -49,6 +51,7 @@ const объекты = [
   огнетушитель,
   правилоСрока,
   движениеДокумента,
+  пунктСписка,
 ];
 
 export const манифестПожСервиса: Manifest = {
@@ -69,7 +72,7 @@ export const манифестПожСервиса: Manifest = {
   // Здесь — только те половины связей, что идут МЕЖДУ группами объектов.
   // Остальные поля описаны внутри своих объектов. Каждое поле знает, кому оно
   // принадлежит, поэтому список плоский.
-  fields: [...связиМеждуГруппами, ...половиныДляЧужихОбъектов],
+  fields: [...связиМеждуГруппами, ...половиныДляЧужихОбъектов, ...связиСЗадачей],
   logicFunctions: [],
   frontComponents: [],
   publicAssets: [],
