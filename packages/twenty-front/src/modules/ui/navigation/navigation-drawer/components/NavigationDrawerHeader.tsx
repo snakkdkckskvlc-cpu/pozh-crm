@@ -93,9 +93,21 @@ export const NavigationDrawerHeader = ({
             aria-label={t`Search`}
           />
         )}
-        {isNavigationDrawerExpanded && showCollapseButton && (
+        {/* пожсервис: раньше кнопка сворачивания рисовалась ТОЛЬКО пока панель
+            развёрнута — обратную кнопку («развернуть») рисовала соседняя шапка
+            страницы (PageHeader), а не сама панель. Но наши 21 экран службы
+            документов (/documents/*, PozhScreenPage) — это простая страница
+            без PageHeader. Свернул панель на такой странице — и кнопки
+            «развернуть» не было НИГДЕ на экране, а состояние «свёрнуто»
+            запоминается и переживает перезагрузку: тупик без выхода.
+            Найдено живым обходом («кнопка закрывает меню, а открыть
+            невозможно»). Теперь кнопка всегда в одном и том же месте самой
+            панели, и любая страница, наша или будущая, её не может спрятать. */}
+        {showCollapseButton && !isMobile && (
           <StyledNavigationDrawerCollapseButtonContainer>
-            <NavigationDrawerCollapseButton direction="left" />
+            <NavigationDrawerCollapseButton
+              direction={isNavigationDrawerExpanded ? 'left' : 'right'}
+            />
           </StyledNavigationDrawerCollapseButtonContainer>
         )}
       </StyledRightActions>
