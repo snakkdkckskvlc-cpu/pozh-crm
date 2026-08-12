@@ -19,9 +19,9 @@
 
 import { type ObjectManifest } from 'twenty-shared/application';
 
-import { ОБЪЕКТЫ } from 'src/pozh/manifest/pozh-ids';
 import { связьПерсональныхДанныхСВодителем } from 'src/pozh/manifest/objects/dannye-voditelya';
 import { связьЛистаСВодителем } from 'src/pozh/manifest/objects/putevoj-list';
+import { ОБЪЕКТЫ } from 'src/pozh/manifest/pozh-ids';
 import { источник, опознаватель, текст, флажок } from 'src/pozh/manifest/pozh-pole';
 
 const О = ОБЪЕКТЫ.водитель;

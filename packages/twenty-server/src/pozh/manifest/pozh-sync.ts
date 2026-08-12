@@ -58,6 +58,47 @@ const войти = async (): Promise<string> => {
 const главное = async () => {
   const токен = await войти();
 
+  // Приложение надо сперва зарегистрировать: при предварительном просмотре это
+  // не требуется, а при настоящей выкладке — да. Повторный вызов безвреден,
+  // поэтому проверять «а есть ли уже» отдельно не нужно: дешевле попробовать.
+  if (!просмотр) {
+    try {
+      await запрос(
+        `mutation($input:CreateApplicationRegistrationInput!){ createApplicationRegistration(input:$input){ applicationRegistration { id name } } }`,
+        {
+          input: {
+            name: 'ПожСервис',
+            universalIdentifier: манифестПожСервиса.application.universalIdentifier,
+          },
+        },
+        токен,
+      );
+      console.log('приложение зарегистрировано');
+    } catch (e) {
+      // Уже зарегистрировано — это обычное состояние на второй и последующих
+      // выкладках, а не отказ.
+      console.log(`регистрация пропущена: ${(e as Error).message.slice(0, 120)}`);
+    }
+  }
+
+  // Второй шаг: завести приложение в самом рабочем пространстве. Регистрация
+  // выше — это заявка имени на весь сервер, а это — «поставить сюда».
+  if (!просмотр) {
+    try {
+      await запрос(
+        `mutation($universalIdentifier:String!,$name:String!){ createDevelopmentApplication(universalIdentifier:$universalIdentifier,name:$name){ id } }`,
+        {
+          universalIdentifier: манифестПожСервиса.application.universalIdentifier,
+          name: 'ПожСервис',
+        },
+        токен,
+      );
+      console.log('приложение заведено в рабочем пространстве');
+    } catch (e) {
+      console.log(`заведение пропущено: ${(e as Error).message.slice(0, 120)}`);
+    }
+  }
+
   const данные = await запрос(
     `mutation($manifest:JSON!,$dryRun:Boolean){ syncApplication(manifest:$manifest,dryRun:$dryRun){ applicationUniversalIdentifier actions } }`,
     { manifest: манифестПожСервиса, dryRun: просмотр },

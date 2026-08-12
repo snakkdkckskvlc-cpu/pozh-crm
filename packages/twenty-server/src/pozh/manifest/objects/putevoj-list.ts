@@ -23,8 +23,8 @@
 import { type ObjectManifest } from 'twenty-shared/application';
 import { RelationOnDeleteAction } from 'twenty-shared/types';
 
-import { ОБЪЕКТЫ } from 'src/pozh/manifest/pozh-ids';
 import { связьСтрочкиСЛистом } from 'src/pozh/manifest/objects/pricep-v-liste';
+import { ОБЪЕКТЫ } from 'src/pozh/manifest/pozh-ids';
 import {
   выбор,
   дата,
@@ -132,8 +132,8 @@ export const путевойЛист: ObjectManifest = {
       варианты: [
         { value: 'notSet', label: 'Не указана', color: 'gray' },
         { value: 'form3', label: 'Форма 3 — легковой автомобиль', color: 'blue' },
-        { value: 'form4s', label: 'Форма 4-С — грузовой, сдельная', color: 'green' },
-        { value: 'form4p', label: 'Форма 4-П — грузовой, повременная', color: 'turquoise' },
+        { value: 'form4s', label: 'Форма 4-С — грузовой сдельный', color: 'green' },
+        { value: 'form4p', label: 'Форма 4-П — грузовой повременный', color: 'turquoise' },
         { value: 'form6', label: 'Форма 6 — автобус', color: 'orange' },
       ],
       поумолчанию: 'notSet',

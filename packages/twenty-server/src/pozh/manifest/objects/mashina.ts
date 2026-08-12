@@ -140,8 +140,8 @@ export const машина: ObjectManifest = {
       пояснение: 'Какой бланк печатать для этой машины.',
       варианты: [
         { value: 'FORMA_3', label: 'Форма 3 (легковой)', color: 'blue' },
-        { value: 'FORMA_4S', label: 'Форма 4-С (грузовой, сдельная)', color: 'green' },
-        { value: 'FORMA_4P', label: 'Форма 4-П (грузовой, повременная)', color: 'turquoise' },
+        { value: 'FORMA_4S', label: 'Форма 4-С — грузовой сдельный', color: 'green' },
+        { value: 'FORMA_4P', label: 'Форма 4-П — грузовой повременный', color: 'turquoise' },
         { value: 'FORMA_6', label: 'Форма 6 (автобус)', color: 'orange' },
       ],
     }),
