@@ -34,11 +34,14 @@ export const MainNavigationDrawerScrollableItems = () => {
   return (
     <StyledScrollableItemsContainer>
       <NavigationDrawerOpenedSection />
-      <PozhNavigationSection />
+      {/* пожсервис: наши разделы идут двумя заходами вокруг раздела Twenty —
+          «Ведётся разработка» обязан быть самым нижним пунктом меню. */}
+      <PozhNavigationSection место="сверху" />
       <Suspense fallback={<NavigationDrawerWorkspaceSectionSkeletonLoader />}>
         <FavoritesSectionDispatcher />
         <WorkspaceSectionDispatcher />
       </Suspense>
+      <PozhNavigationSection место="снизу" />
     </StyledScrollableItemsContainer>
   );
 };
