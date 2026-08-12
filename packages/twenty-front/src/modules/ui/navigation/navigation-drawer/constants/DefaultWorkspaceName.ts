@@ -1,1 +1,2 @@
-export const DEFAULT_WORKSPACE_NAME = 'Twenty';
+// пожсервис: имя рабочего пространства до того, как его настроили.
+export const DEFAULT_WORKSPACE_NAME = 'ПожСервис';

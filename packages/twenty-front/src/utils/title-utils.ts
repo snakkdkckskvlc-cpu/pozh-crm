@@ -60,6 +60,10 @@ export const getPageTitleFromPath = (pathname: string): string => {
     case SettingsPathPrefixes.Community:
       return t`Community - Settings`;
     default:
-      return 'Twenty';
+      // пожсервис: название вкладки. Правка в разметке страницы до сюда не
+      // доживает — приложение ставит название заново во время работы, и оно
+      // перебивает исходное. Проверено: в разметке «ПожСервис», а на вкладке
+      // было «Twenty». Люди находят нужное окно по этой надписи.
+      return 'ПожСервис';
   }
 };
