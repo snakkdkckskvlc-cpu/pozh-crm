@@ -1,3 +1,12 @@
+// пожсервис: запрет выхода в интернет — ПЕРВОЙ строкой import.
+//
+// Это третья точка входа: отдельный процесс «node dist/command/command», через
+// него идут переносы базы при обновлении, заведение расписаний заданий,
+// наполнение пробными данными и установка приложений — а установка приложения
+// качает пакет из реестра программ в интернете. Запрета здесь не было.
+// Разбор: src/pozh-netguard-install.ts
+import 'src/pozh-netguard-install';
+
 import { CommandFactory } from 'nest-commander';
 
 import { ExceptionHandlerService } from 'src/engine/core-modules/exception-handler/exception-handler.service';

@@ -1,3 +1,8 @@
+// пожсервис: запрет выхода в интернет — ПЕРВОЙ строкой import. Очистка базы
+// запускается отдельным процессом, запрет из main.ts на неё не действует.
+// Разбор: src/pozh-netguard-install.ts
+import 'src/pozh-netguard-install';
+
 import { rawDataSource } from 'src/database/typeorm/raw/raw.datasource';
 
 import { performQuery } from './setup-db-utils';

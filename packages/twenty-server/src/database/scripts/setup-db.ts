@@ -1,3 +1,10 @@
+// пожсервис: запрет выхода в интернет — ПЕРВОЙ строкой import. Заведение базы
+// запускается отдельным процессом («node dist/database/scripts/setup-db.js»),
+// то есть запрет из main.ts на него не распространяется. Своя база — это
+// localhost или сеть предприятия, их запрет пропускает.
+// Разбор: src/pozh-netguard-install.ts
+import 'src/pozh-netguard-install';
+
 import { rawDataSource } from 'src/database/typeorm/raw/raw.datasource';
 
 import { camelToSnakeCase, performQuery } from './setup-db-utils';

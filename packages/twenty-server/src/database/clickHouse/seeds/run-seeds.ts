@@ -1,4 +1,9 @@
 /* oxlint-disable no-console */
+// пожсервис: запрет выхода в интернет — ПЕРВОЙ строкой import. Наполнение
+// ClickHouse пробными данными запускается отдельным процессом, запрет из
+// main.ts на него не действует. Разбор: src/pozh-netguard-install.ts
+import 'src/pozh-netguard-install';
+
 import { createClient, ClickHouseLogLevel } from '@clickhouse/client';
 import { config } from 'dotenv';
 

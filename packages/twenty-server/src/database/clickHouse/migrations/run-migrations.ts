@@ -1,4 +1,12 @@
 /* oxlint-disable no-console */
+// пожсервис: запрет выхода в интернет — ПЕРВОЙ строкой import. Переносы
+// ClickHouse запускаются отдельным процессом, запрет из main.ts на него не
+// действует. Аналитика в форке выключена (ANALYTICS_ENABLED=false, адрес пуст),
+// так что здесь запрет ничего не ломает; если когда-нибудь впишут ClickHouse не
+// на своей машине — обращение будет отвергнуто, и это правильно: туда уходят
+// данные о работе. Разбор: src/pozh-netguard-install.ts
+import 'src/pozh-netguard-install';
+
 import fs from 'fs';
 import path from 'path';
 
