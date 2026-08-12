@@ -8,7 +8,7 @@ window.STATE =
   "briefFile": "2026-08-13-brief.md",
   "memoryFile": "CLAUDE.md",
   "startedAt": "2026-08-13T01:30:39+03:00",
-  "updatedAt": "2026-08-13T02:20:00+03:00",
+  "updatedAt": "2026-08-13T02:35:00+03:00",
   "finishedAt": null,
   "stages": [
     {
@@ -46,13 +46,16 @@ window.STATE =
     },
     {
       "id": "build",
-      "status": "active",
+      "status": "done",
       "startedAt": "2026-08-13T01:33:00+03:00",
-      "note": "мост найден выключенным — включаю"
+      "note": "4 таска, 3 закрыты, 1 ждёт твоих глаз",
+      "finishedAt": "2026-08-13T02:33:00+03:00"
     },
     {
       "id": "review",
-      "status": "pending"
+      "status": "active",
+      "startedAt": "2026-08-13T02:33:00+03:00",
+      "note": "осталось: войти в CRM и открыть один экран"
     },
     {
       "id": "final",
@@ -61,8 +64,8 @@ window.STATE =
   ],
   "requirements": {
     "total": 3,
-    "done": 2,
-    "inTicket": 1,
+    "done": 3,
+    "inTicket": 0,
     "inSpec": 0,
     "placeholder": 0,
     "deferred": 0,
@@ -160,18 +163,37 @@ window.STATE =
       "zone": [
         "twenty-server/queue-worker"
       ],
-      "status": "in-progress",
+      "status": "done",
       "retries": 0,
       "repairs": 0,
       "concerns": [
-        "запрет в коде подключён к серверу, но не к фоновым заданиям — раз в час идёт обращение в чужой каталог программ"
+        "найдено крупнее задачи: запрет считался подключённым, но в собранном файле стоял после семи загрузок — гарантия «не может выйти в сеть» не выполнялась",
+        "подключено в семи точках входа вместо одной",
+        "при переезде в контейнеры имена db и redis запрет отвергнет — сейчас контейнеры не используются"
       ],
-      "startedAt": "2026-08-13T02:05:00+03:00"
+      "startedAt": "2026-08-13T02:05:00+03:00",
+      "finishedAt": "2026-08-13T02:33:00+03:00",
+      "commit": "7af54a24",
+      "tests": {
+        "passed": 36,
+        "failed": 0
+      },
+      "files": [
+        "pozh-netguard-install.ts",
+        "queue-worker.ts",
+        "main.ts",
+        "command.ts",
+        "setup-db.ts",
+        "truncate-db.ts",
+        "run-migrations.ts",
+        "run-seeds.ts",
+        "OUTBOUND_AUDIT.md"
+      ]
     }
   ],
   "singlePass": null,
   "tests": {
-    "passed": 90,
+    "passed": 126,
     "failed": 0
   },
   "debt": {
