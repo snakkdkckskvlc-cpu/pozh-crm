@@ -30,6 +30,7 @@ import { точка } from 'src/pozh/manifest/objects/tochka';
 import { водитель } from 'src/pozh/manifest/objects/voditel';
 import { ПРИЛОЖЕНИЕ, РОЛЬ_ПО_УМОЛЧАНИЮ } from 'src/pozh/manifest/pozh-ids';
 import { пунктыМеню } from 'src/pozh/manifest/pozh-menyu';
+import { видыЗадач, пунктыМенюЗадач } from 'src/pozh/manifest/pozh-vidy-zadach';
 import { роли } from 'src/pozh/manifest/pozh-roli';
 import {
   указателиИсточника,
@@ -76,10 +77,10 @@ export const манифестПожСервиса: Manifest = {
   logicFunctions: [],
   frontComponents: [],
   publicAssets: [],
-  views: [],
+  views: видыЗадач,
   viewFields: [],
   // Без этих пунктов объекты есть в базе, но их никто не видит.
-  navigationMenuItems: пунктыМеню,
+  navigationMenuItems: [...пунктыМеню, ...пунктыМенюЗадач],
   pageLayouts: [],
   pageLayoutTabs: [],
   commandMenuItems: [],
