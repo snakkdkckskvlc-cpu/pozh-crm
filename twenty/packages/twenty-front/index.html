@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" translate="no" class="light">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/images/icons/android/android-launchericon-48-48.png"
+      data-rh="true"
+    />
+    <link rel="apple-touch-icon" href="/images/icons/ios/192.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- пожсервис: политика содержимого — запрет обращений наружу из браузера.
+         Серверная половина закрыта запретом в коде (src/pozh-netguard.ts), но
+         браузер ходит по сети сам: чужой шрифт, картинка или счётчик на странице
+         тем запретом не ловятся, а чужой сервер видит, кто и когда открыл
+         систему. Здесь всё сведено к своему адресу.
+         'unsafe-inline' и 'unsafe-eval' для скриптов оставлены: без них не
+         работает сборщик страниц в режиме разработки. На боевом сервере их надо
+         убрать — записано в docs/architecture/OUTBOUND_AUDIT.md. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; connect-src 'self' ws: wss:; frame-src 'self' %POZH_DOCS_ORIGIN%; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="A modern open-source CRM" />
+    <!-- пожсервис: картинка для соцсетей убрана — тянулась с чужого сервера,
+         а в закрытом контуре она бесполезна -->
+    <meta property="og:description" content="A modern open-source CRM" />
+    <meta property="og:title" content="ПожСервис" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="twitter:description" content="A modern open-source CRM" />
+    <meta name="twitter:title" content="ПожСервис" />
+    <!-- пожсервис: название вкладки. Люди находят окно по нему. -->
+    <title>ПожСервис</title>
+    <!-- BEGIN: Twenty Config -->
+    <script id="twenty-env-config">
+      window._env_ = {
+        // This will be overwritten
+      };
+    </script>
+    <!-- END: Twenty Config -->
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content"
+    />
+    <script type="module">
+      const disableInputAutoZoom = () => {
+        const viewportMetadata = document.querySelector('meta[name=viewport]');
+
+        if (viewportMetadata !== null) {
+          viewportMetadata.setAttribute(
+            'content',
+            'width=device-width, initial-scale=1.0, maximum-scale=1.0, interactive-widget=resizes-content',
+          );
+        }
+      };
+
+      const isIOS = /iPad|iPhone/.test(navigator.userAgent);
+      if (isIOS) {
+        disableInputAutoZoom();
+      }
+    </script>
+    <style>
+      :root {
+        /* THEME_DARK.background.secondary */
+        --theme-dark-background-secondary: #1b1b1b;
+        /* THEME_LIGHT.background.secondary */
+        --theme-light-background-secondary: #fcfcfc;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        html,
+        body {
+          background-color: var(--theme-dark-background-secondary);
+        }
+      }
+
+      @media (prefers-color-scheme: light) {
+        html,
+        body {
+          background-color: var(--theme-light-background-secondary);
+        }
+      }
+    </style>
+    <!-- пожсервис: фирменный вид -->
+    <link rel="stylesheet" href="/pozh-theme.css" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+import { NavigationDrawerOpenedSection } from '@/navigation-menu-item/display/sections/components/NavigationDrawerOpenedSection';
+// пожсервис: раздел с экранами службы документов
+import { PozhNavigationSection } from '@/navigation/components/PozhNavigationSection';
+import { NavigationDrawerWorkspaceSectionSkeletonLoader } from '@/object-metadata/components/NavigationDrawerWorkspaceSectionSkeletonLoader';
+
+import { styled } from '@linaria/react';
+import { lazy, Suspense } from 'react';
+
+import { themeCssVariables } from 'twenty-ui/theme-constants';
+
+const FavoritesSectionDispatcher = lazy(() =>
+  import('@/navigation-menu-item/display/sections/favorites/components/FavoritesSectionDispatcher').then(
+    (module) => ({
+      default: module.FavoritesSectionDispatcher,
+    }),
+  ),
+);
+
+const WorkspaceSectionDispatcher = lazy(() =>
+  import('@/navigation-menu-item/display/sections/workspace/components/WorkspaceSectionDispatcher').then(
+    (module) => ({
+      default: module.WorkspaceSectionDispatcher,
+    }),
+  ),
+);
+
+const StyledScrollableItemsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${themeCssVariables.spacing[3]};
+`;
+
+export const MainNavigationDrawerScrollableItems = () => {
+  return (
+    <StyledScrollableItemsContainer>
+      <NavigationDrawerOpenedSection />
+      {/* пожсервис: наши разделы идут двумя заходами вокруг раздела Twenty —
+          «Ведётся разработка» обязан быть самым нижним пунктом меню. */}
+      <PozhNavigationSection место="сверху" />
+      <Suspense fallback={<NavigationDrawerWorkspaceSectionSkeletonLoader />}>
+        <FavoritesSectionDispatcher />
+        <WorkspaceSectionDispatcher />
+      </Suspense>
+      <PozhNavigationSection место="снизу" />
+    </StyledScrollableItemsContainer>
+  );
+};
