@@ -15,10 +15,7 @@ import { договор } from 'src/pozh/manifest/objects/dogovor';
 import { движениеДокумента } from 'src/pozh/manifest/objects/dvizhenie-dokumenta';
 import { контрагент } from 'src/pozh/manifest/objects/kontragent';
 import { машина } from 'src/pozh/manifest/objects/mashina';
-import {
-  поляНарядаСДоски,
-  указательНарядаСДоски,
-} from 'src/pozh/manifest/objects/naryad-s-doski';
+import { поляНарядаСДоски } from 'src/pozh/manifest/objects/naryad-s-doski';
 import { огнетушитель } from 'src/pozh/manifest/objects/ognetushitel';
 import { правилоСрока } from 'src/pozh/manifest/objects/pravilo-sroka';
 import { прицеп } from 'src/pozh/manifest/objects/pricep';
@@ -99,10 +96,8 @@ export const манифестПожСервиса: Manifest = {
   // Составной признак уникальности — единственный способ сделать связь
   // «один-к-одному»: он же держит персональные данные водителя привязанными
   // ровно к одному водителю.
-  indexes: [
-    ...указателиДанныхВодителя,
-    ...указателиИсточника,
-    указательНомераЛиста,
-    указательНарядаСДоски,
-  ],
+  // Указателя на встроенную задачу здесь НЕТ и быть не может: указатель ищет
+  // объект среди объявленных в этой описи, а задача — чужая, встроенная.
+  // Поймано предварительным просмотром, разбор — в objects/naryad-s-doski.ts.
+  indexes: [...указателиДанныхВодителя, ...указателиИсточника, указательНомераЛиста],
 };
