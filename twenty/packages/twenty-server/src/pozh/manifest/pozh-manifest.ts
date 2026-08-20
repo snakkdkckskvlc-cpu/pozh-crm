@@ -17,12 +17,14 @@ import { контрагент } from 'src/pozh/manifest/objects/kontragent';
 import { машина } from 'src/pozh/manifest/objects/mashina';
 import { поляНарядаСДоски } from 'src/pozh/manifest/objects/naryad-s-doski';
 import { огнетушитель } from 'src/pozh/manifest/objects/ognetushitel';
+import { поручение, связьПоручениеСовещание } from 'src/pozh/manifest/objects/poruchenie';
 import { правилоСрока } from 'src/pozh/manifest/objects/pravilo-sroka';
 import { прицеп } from 'src/pozh/manifest/objects/pricep';
 import { прицепВЛисте } from 'src/pozh/manifest/objects/pricep-v-liste';
 import { путевойЛист } from 'src/pozh/manifest/objects/putevoj-list';
 import { рейс } from 'src/pozh/manifest/objects/rejs';
 import { счётчикНомеров } from 'src/pozh/manifest/objects/schetchik-nomerov';
+import { совещание } from 'src/pozh/manifest/objects/soveshchanie';
 import { пунктСписка } from 'src/pozh/manifest/objects/punkt-spiska-del';
 import { связиМеждуГруппами } from 'src/pozh/manifest/objects/svyazi-mezhdu-gruppami';
 import { связиСЗадачей } from 'src/pozh/manifest/objects/svyaz-s-zadachej';
@@ -54,6 +56,8 @@ const объекты = [
   правилоСрока,
   движениеДокумента,
   пунктСписка,
+  совещание,
+  поручение,
 ];
 
 export const манифестПожСервиса: Manifest = {
@@ -82,6 +86,7 @@ export const манифестПожСервиса: Manifest = {
     ...половиныДляЧужихОбъектов,
     ...связиСЗадачей,
     ...поляНарядаСДоски,
+    ...связьПоручениеСовещание,
   ],
   logicFunctions: [],
   frontComponents: [],
