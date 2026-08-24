@@ -19,10 +19,19 @@
          систему. Здесь всё сведено к своему адресу.
          'unsafe-inline' и 'unsafe-eval' для скриптов оставлены: без них не
          работает сборщик страниц в режиме разработки. На боевом сервере их надо
-         убрать — записано в docs/architecture/OUTBOUND_AUDIT.md. -->
+         убрать — записано в docs/architecture/OUTBOUND_AUDIT.md.
+
+         ВЕБСОКЕТЫ ОГРАНИЧЕНЫ СВОИМ АДРЕСОМ, и это не придирка. Раньше здесь
+         стояло «ws: wss:» — схема без адреса, то есть разрешение открыть
+         вебсокет к ЛЮБОМУ серверу в интернете. Остальные строки правила при
+         этом выглядели строгими, и дыра была не видна: картинку с чужого
+         сервера браузер бы не взял, а постоянное соединение с ним — взял бы,
+         и по нему уходит что угодно. В разборе (OUTBOUND_AUDIT.md, рубеж 3)
+         написано «connect-src 'self'» — послабление появилось позже и мимо
+         разбора. -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; connect-src 'self' ws: wss:; frame-src 'self' %POZH_DOCS_ORIGIN%; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+      content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; connect-src 'self' ws://localhost:* wss://localhost:* ws://127.0.0.1:* wss://127.0.0.1:*; frame-src 'self' %POZH_DOCS_ORIGIN%; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
     />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="A modern open-source CRM" />
