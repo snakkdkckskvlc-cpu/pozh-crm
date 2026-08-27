@@ -42,6 +42,7 @@ import { строкаСправки } from 'src/pozh/manifest/objects/stroka-spr
 import { стройобъект } from 'src/pozh/manifest/objects/stroyobekt';
 import { половиныСнабженияДляСтарыхОбъектов } from 'src/pozh/manifest/objects/svyazi-snabzheniya';
 import { заявка } from 'src/pozh/manifest/objects/zayavka';
+import { видыСнабжения, пунктыМенюСнабжения } from 'src/pozh/manifest/pozh-vidy-snabzheniya';
 import { видыЗадач, пунктыМенюЗадач } from 'src/pozh/manifest/pozh-vidy-zadach';
 import { роли } from 'src/pozh/manifest/pozh-roli';
 import {
@@ -115,10 +116,10 @@ export const манифестПожСервиса: Manifest = {
   logicFunctions: [],
   frontComponents: [],
   publicAssets: [],
-  views: видыЗадач,
+  views: [...видыЗадач, ...видыСнабжения],
   viewFields: [],
   // Без этих пунктов объекты есть в базе, но их никто не видит.
-  navigationMenuItems: [...пунктыМеню, ...пунктыМенюЗадач],
+  navigationMenuItems: [...пунктыМеню, ...пунктыМенюЗадач, ...пунктыМенюСнабжения],
   pageLayouts: [],
   pageLayoutTabs: [],
   commandMenuItems: [],

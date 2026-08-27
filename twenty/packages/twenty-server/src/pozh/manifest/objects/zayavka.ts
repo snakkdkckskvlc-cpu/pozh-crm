@@ -61,10 +61,10 @@ export const заявка: ObjectManifest = {
       подпись: 'Вид',
       пояснение: 'ПТО просит по спецификации заранее, прораб — по ходу работ.',
       варианты: [
-        { value: 'прорабская', label: 'От прораба', color: 'blue' },
-        { value: 'пто', label: 'От ПТО', color: 'purple' },
+        { value: 'FOREMAN', label: 'От прораба', color: 'blue' },
+        { value: 'PTO', label: 'От ПТО', color: 'purple' },
       ],
-      поумолчанию: 'прорабская',
+      поумолчанию: 'FOREMAN',
     }),
     выбор({
       объект: О,
@@ -72,14 +72,14 @@ export const заявка: ObjectManifest = {
       подпись: 'Состояние',
       пояснение: 'То, что читает прораб в ответ на вопрос «где мой материал».',
       варианты: [
-        { value: 'подана', label: 'Подана', color: 'gray' },
-        { value: 'на согласовании', label: 'На согласовании', color: 'yellow' },
-        { value: 'согласована', label: 'Согласована', color: 'blue' },
-        { value: 'в снабжении', label: 'В снабжении', color: 'purple' },
-        { value: 'закрыта', label: 'Закрыта', color: 'green' },
-        { value: 'отклонена', label: 'Отклонена', color: 'red' },
+        { value: 'SUBMITTED', label: 'Подана', color: 'gray' },
+        { value: 'IN_APPROVAL', label: 'На согласовании', color: 'yellow' },
+        { value: 'APPROVED', label: 'Согласована', color: 'blue' },
+        { value: 'IN_SUPPLY', label: 'В снабжении', color: 'purple' },
+        { value: 'CLOSED', label: 'Закрыта', color: 'green' },
+        { value: 'REJECTED', label: 'Отклонена', color: 'red' },
       ],
-      поумолчанию: 'подана',
+      поумолчанию: 'SUBMITTED',
     }),
     // Как пришла. Нужна не для отчёта: заявка из бота приходит текстом, фото
     // или голосом, и снабженец должен знать, что именно ему открывать.
@@ -88,11 +88,11 @@ export const заявка: ObjectManifest = {
       имя: 'source',
       подпись: 'Откуда пришла',
       варианты: [
-        { value: 'бот', label: 'Из бота МАКС', color: 'green' },
-        { value: 'бумага', label: 'С бумаги', color: 'gray' },
-        { value: 'вручную', label: 'Заведена руками', color: 'orange' },
+        { value: 'BOT', label: 'Из бота МАКС', color: 'green' },
+        { value: 'PAPER', label: 'С бумаги', color: 'gray' },
+        { value: 'MANUAL', label: 'Заведена руками', color: 'orange' },
       ],
-      поумолчанию: 'бот',
+      поумолчанию: 'BOT',
     }),
     текст({
       объект: О,

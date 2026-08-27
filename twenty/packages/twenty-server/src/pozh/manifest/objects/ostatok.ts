@@ -84,11 +84,11 @@ export const остаток: ObjectManifest = {
       имя: 'kind',
       подпись: 'Тип материала',
       варианты: [
-        { value: 'закупка', label: 'Закупка', color: 'blue' },
-        { value: 'давальческий', label: 'Давальческий', color: 'purple' },
-        { value: 'расходники', label: 'Расходники', color: 'gray' },
+        { value: 'PURCHASE', label: 'Закупка', color: 'blue' },
+        { value: 'CUSTOMER_SUPPLIED', label: 'Давальческий', color: 'purple' },
+        { value: 'CONSUMABLES', label: 'Расходники', color: 'gray' },
       ],
-      поумолчанию: 'закупка',
+      поумолчанию: 'PURCHASE',
     }),
     // Номер накладной. Для давальческого он обязателен по делу, а не по
     // описи: «этот номер накладной нужен потом при списании», справка 304 его
