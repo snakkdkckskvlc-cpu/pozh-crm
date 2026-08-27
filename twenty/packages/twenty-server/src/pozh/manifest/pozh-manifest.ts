@@ -33,6 +33,15 @@ import { точка } from 'src/pozh/manifest/objects/tochka';
 import { водитель } from 'src/pozh/manifest/objects/voditel';
 import { ПРИЛОЖЕНИЕ, РОЛЬ_ПО_УМОЛЧАНИЮ } from 'src/pozh/manifest/pozh-ids';
 import { пунктыМеню } from 'src/pozh/manifest/pozh-menyu';
+import { движениеОстаткаОбъект } from 'src/pozh/manifest/objects/dvizhenie-ostatka';
+import { остаток } from 'src/pozh/manifest/objects/ostatok';
+import { позицияСпецификации } from 'src/pozh/manifest/objects/poziciya-specifikacii';
+import { позицияЗаявки } from 'src/pozh/manifest/objects/poziciya-zayavki';
+import { справка } from 'src/pozh/manifest/objects/spravka';
+import { строкаСправки } from 'src/pozh/manifest/objects/stroka-spravki';
+import { стройобъект } from 'src/pozh/manifest/objects/stroyobekt';
+import { половиныСнабженияДляСтарыхОбъектов } from 'src/pozh/manifest/objects/svyazi-snabzheniya';
+import { заявка } from 'src/pozh/manifest/objects/zayavka';
 import { видыЗадач, пунктыМенюЗадач } from 'src/pozh/manifest/pozh-vidy-zadach';
 import { роли } from 'src/pozh/manifest/pozh-roli';
 import {
@@ -58,6 +67,17 @@ const объекты = [
   пунктСписка,
   совещание,
   поручение,
+  // Снабжение: вся цепочка от заявки прораба до списания по справкам 304 и 190.
+  // Порядок здесь — порядок движения работы, а не алфавит: объект, его
+  // спецификация, заявка с позициями, остатки с движениями, справка со строками.
+  стройобъект,
+  позицияСпецификации,
+  заявка,
+  позицияЗаявки,
+  остаток,
+  движениеОстаткаОбъект,
+  справка,
+  строкаСправки,
 ];
 
 export const манифестПожСервиса: Manifest = {
@@ -87,6 +107,10 @@ export const манифестПожСервиса: Manifest = {
     ...связиСЗадачей,
     ...поляНарядаСДоски,
     ...связьПоручениеСовещание,
+    // Две половины связей снабжения, которые ложатся на контрагента и договор.
+    // Их файлы не тронуты нарочно: объект, заведённый в апреле, не должен
+    // меняться от того, что в августе появилось снабжение.
+    ...половиныСнабженияДляСтарыхОбъектов,
   ],
   logicFunctions: [],
   frontComponents: [],
