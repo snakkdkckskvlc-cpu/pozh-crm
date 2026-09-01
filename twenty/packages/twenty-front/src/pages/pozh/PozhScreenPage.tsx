@@ -9,7 +9,7 @@
 // живёт пять минут. Взять его один раз и запомнить — значит через полчаса
 // показать человеку пустую страницу без объяснения.
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from '@linaria/react';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
@@ -91,6 +91,10 @@ export const PozhScreenPage = () => {
 
   const [экраны, setЭкраны] = useState<Экран[]>([]);
   const [адрес, setАдрес] = useState<string | null>(null);
+  // Тот же адрес, но пригодный для чтения из обработчика сообщений. Через
+  // список зависимостей его брать НЕЛЬЗЯ: это же действие адрес и записывает,
+  // и получилась бы бесконечная череда запросов. Проверено сразу после правки.
+  const адресДляПроверки = useRef<string | null>(null);
   const [ошибка, setОшибка] = useState<string | null>(null);
 
   useEffect(() => {
@@ -131,6 +135,7 @@ export const PozhScreenPage = () => {
           return;
         }
 
+        адресДляПроверки.current = тело.адрес;
         setАдрес(тело.адрес);
       } catch {
         if (!отменено) {
@@ -141,10 +146,29 @@ export const PozhScreenPage = () => {
       }
     };
 
+    // Экран внутри рамки сообщает, что его вход истёк: пропуск живёт пять
+    // минут, а вкладку оставляют открытой на ночь. Без этого человек получал
+    // форму входа СТАРОЙ программы внутри Twenty — второй вход в систему, куда
+    // он уже вошёл, и пароля от неё у него нет.
+    //
+    // Проверка отправителя обязательна: сообщение может прислать любая
+    // страница, а по нему мы выписываем новый пропуск.
+    const наСообщение = (событие: MessageEvent) => {
+      if (событие.data?.пожсервис !== 'вход-истёк') return;
+      const текущий = адресДляПроверки.current;
+
+      if (текущий !== null && !текущий.startsWith(событие.origin)) return;
+
+      void загрузить();
+    };
+
+    window.addEventListener('message', наСообщение);
+
     void загрузить();
 
     return () => {
       отменено = true;
+      window.removeEventListener('message', наСообщение);
     };
   }, [screen, токен]);
 
