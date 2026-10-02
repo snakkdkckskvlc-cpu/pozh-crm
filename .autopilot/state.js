@@ -8,7 +8,7 @@ window.STATE =
   "briefFile": "2026-08-13-brief.md",
   "memoryFile": "CLAUDE.md",
   "startedAt": "2026-08-13T12:17:40+03:00",
-  "updatedAt": "2026-08-13T20:25:00+03:00",
+  "updatedAt": "2026-08-13T20:52:00+03:00",
   "finishedAt": null,
   "stages": [
     {
@@ -50,13 +50,17 @@ window.STATE =
       "id": "build",
       "status": "active",
       "startedAt": "2026-08-13T14:02:00+03:00",
-      "note": "все пять тасков собраны и проверены, ждут сохранения"
+      "note": "5 из 5 закрыто и сохранено (605b18a)"
     },
-    { "id": "review", "status": "pending" },
+    {
+      "id": "review",
+      "status": "done",
+      "note": "3 доработки, состязательная проверка в 4 взгляда, 33 находки"
+    },
     { "id": "final", "status": "pending" }
   ],
   "requirements": {
-    "total": 32, "done": 4, "inTicket": 26, "inSpec": 1,
+    "total": 32, "done": 30, "inTicket": 0, "inSpec": 1,
     "placeholder": 0, "deferred": 1, "dropped": 0
   },
   "tickets": [
@@ -67,7 +71,7 @@ window.STATE =
       "blockedBy": [],
       "wave": 1,
       "zone": ["infrastructure/db.py", "services/kadry_sostav.py", "main.py"],
-      "status": "review",
+      "status": "done",
       "startedAt": "2026-08-13T14:12:00+03:00",
       "tests": { "passed": 118, "failed": 0 },
       "concerns": ["три доработки, состязательная проверка в 4 взгляда; всё закрыто, ждёт общего сохранения"],
@@ -81,7 +85,7 @@ window.STATE =
       "blockedBy": ["01"],
       "wave": 2,
       "zone": ["views/kadry_brigady.py", "frontend/kadry-brigady.html"],
-      "status": "review",
+      "status": "done",
       "startedAt": "2026-08-13T18:56:00+03:00",
       "tests": { "passed": 19, "failed": 0 },
       "concerns": ["проверен живьём на выброшенной базе; экрану нужен пункт меню — чинится отдельно"],
@@ -95,7 +99,7 @@ window.STATE =
       "blockedBy": ["01"],
       "wave": 2,
       "zone": ["services/kadry_analitika.py", "views/kadry_analitika.py", "frontend/kadry-kak-dela.html", "frontend/kadry-chto-proverit.html"],
-      "status": "review",
+      "status": "done",
       "tests": { "passed": 24, "failed": 0 },
       "concerns": ["сумма часов сходится: 2995 = 2995; «Разберусь» живёт в браузере, не в базе"],
       "startedAt": "2026-08-13T19:22:00+03:00",
@@ -109,7 +113,7 @@ window.STATE =
       "blockedBy": ["01"],
       "wave": 2,
       "zone": ["services/kadry_otsutstviya.py", "services/kadry.py", "views/kadry_otsutstviya.py", "frontend/kadry-otsutstviya.html", "frontend/kadry-calendar.html", "generators/kadry_xlsx.py"],
-      "status": "review",
+      "status": "done",
       "tests": { "passed": 46, "failed": 0 },
       "concerns": ["панель расхождений закрыла молчаливый пропуск при подписи бригады"],
       "startedAt": "2026-08-13T19:23:00+03:00",
@@ -134,7 +138,7 @@ window.STATE =
       "blockedBy": ["02", "03", "04"],
       "wave": 3,
       "zone": ["views/embedded.py", "PRODUCT.md"],
-      "status": "review",
+      "status": "done",
       "tests": { "passed": 69, "failed": 0 },
       "concerns": ["в CRM меню сортируется по алфавиту — порядок «сверху ежедневное» не удержится"],
       "startedAt": "2026-08-13T20:05:00+03:00",
